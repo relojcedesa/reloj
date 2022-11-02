@@ -1,0 +1,292 @@
+<!--
+    - Full screen clock (24-hour)
+    - Copyright (c) 2020 Project Nayuki. All rights reserved.
+    - 
+    - https://www.nayuki.io/page/full-screen-clock-javascript
+    -->
+    <!DOCTYPE html>
+    <html style="height:100%; margin:0; padding:0">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <title>Clock</title>
+            <style type="text/css">
+                /* Customizable font and colors */
+                html {
+                    background-color: #7e7e7e;
+                    font-family: sans-serif;
+                    font-weight: bold;
+                    color: #FFFFFF;
+                }
+            </style>
+        </head>
+        
+        <body id= "bodyW" style="display:flex; height:100%; margin: 0; padding:0; justify-content:center; align-items:center; flex-direction: column;">
+    
+            <span id="fecha" style="font-kerning:none"></span>
+    
+            <span id="clocktext" style="font-kerning:none"></span>
+    
+            <span id="espaciado" style="font-kerning:none"></span>
+    
+            <span id="clocktext2" style="font-kerning:none"></span>
+    
+            
+    
+            <script>
+                "use strict";
+                
+                var textElem = document.getElementById("clocktext");
+                var textElem2 = document.getElementById("clocktext2");
+                var textElem3 = document.getElementById("fecha");
+                var textElem4 = document.getElementById("espaciado");
+                var datoBody = document.getElementById("bodyW");
+                var targetWidth = 0.9;  // Proportion of full screen width
+                var targetWidth2 = 0.5;  
+                var targetWidth3 = 0.15;
+                var targetWidth4 = 0.08;
+                var curFontSize = 20;  // Do not change
+                var curFontSize2 = 20;  // Do not change
+                var curFontSize3 = 20;
+                var curFontSize4 = 20;
+                var Minutos = 0;
+                var Horas = 0;
+                var Mes = 0;
+              
+                var colorB = 0; //Color 0 = Verde; 1 = Rojo,
+                var ProxCam = "";
+    
+    
+                function updateClock() {
+                    var d = new Date();
+                    var s = "";
+                    var f = "";
+                    Minutos = d.getMinutes();
+                    Horas = d.getHours();
+                    Mes = d.getMonth();
+    
+                    s += (10 > d.getHours  () ? "0" : "") + d.getHours  () + ":";
+                    s += (10 > d.getMinutes() ? "0" : "") + d.getMinutes();
+                    f += (10 > d.getDate() ? "0" : "") + d.getDate() + " / " + (10>d.getMonth()?"0":"") + (d.getMonth()+1) + " / "+ d.getFullYear();
+                  
+                    //(d.getMonth() >= 7 && d.getMonth()<9)?
+                    Verano();// : Invierno();
+                    textElem.textContent = s;
+                    textElem2.textContent = ProxCam;
+                    textElem3.textContent = f;
+                    textElem4.textContent = "___________  PROXIMO CAMBIO  ___________";
+                    setTimeout(updateClock, 60000 - d.getTime() % 60000 + 100);
+                }
+                
+                function Verano(){
+                    
+                /* Horario de verano */
+                        switch(Horas){
+    
+                        case 7:
+                            if(Minutos<30){
+                                colorB = 0;
+                                ProxCam = "7:30";
+                            }else{
+                                colorB = 1;
+                                ProxCam = "8:30";
+                            }
+                        break;
+                        case 8:
+                            if(Minutos<30){
+                                colorB = 1;
+                                ProxCam = "8:30";
+                            }else{
+                                colorB = 0;
+                                ProxCam = "9:00";
+                            }
+                        break;
+                        case 9:
+                            colorB = 1;
+                            ProxCam = "10:00";
+                        break;
+                        case 10:
+                            if(Minutos<30){
+                                colorB = 0;
+                                ProxCam = "10:30";
+                            }else{
+                                colorB = 1;
+                                ProxCam = "11:30";
+                            }
+                        break;
+                        case 11:
+                            if(Minutos<30){
+                                colorB = 1;
+                                ProxCam = "11:30";
+                            }else{
+                                colorB = 0;
+                                ProxCam = "12:00";
+                            }
+                        break;
+                        case 12:
+                            colorB = 1;
+                            ProxCam = "13:00";
+                        break;
+                        case 13:
+                            if(Minutos<30){
+                                colorB = 0;
+                                ProxCam = "13:30";
+                            }else{
+                                colorB = 1;
+                                ProxCam = "14:30";
+                            }
+                        break;
+                        case 14:
+                            if(Minutos<30){
+                                colorB = 1;
+                                ProxCam = "14:30";
+                            }else{
+                                colorB = 0;
+                                ProxCam = "15:30";
+                            }
+                        break;
+                        default:
+                            colorB = 0;
+                            ProxCam = "7:00";
+                        break;
+                    }
+                    
+                
+                    if(colorB == 0){
+                        document.body.style.backgroundColor = 'green';
+                    }else{
+                        document.body.style.backgroundColor = 'red';
+                    }
+                }
+                
+                function Invierno(){
+                    //Horario de invierno
+                    switch(Horas){
+                        case 8:
+                            if(Minutos<30){
+                                colorB = 1;
+                                ProxCam = "8:30";
+                            }else{
+                                colorB = 0;
+                                ProxCam = "9:00";
+                            }
+                        break;
+                        case 9:
+                            colorB = 1;
+                            ProxCam = "10:00";
+                        break;
+                        case 10:
+                            if(Minutos<30){
+                                colorB = 0;
+                                ProxCam = "10:30";
+                            }else{
+                                colorB = 1;
+                                ProxCam = "11:30";
+                            }
+                        break;
+                        case 11:
+                            if(Minutos<30){
+                                colorB = 1;
+                                ProxCam = "11:30";
+                            }else{
+                                colorB = 0;
+                                ProxCam = "12:00";
+                            }
+                        break;
+                        case 12:
+                            colorB = 1;
+                            ProxCam = "13:00";
+                        break;
+                        case 13:
+                            if(Minutos<30){
+                                colorB = 0;
+                                ProxCam = "13:30";
+                            }else{
+                                colorB = 1;
+                                ProxCam = "14:30";
+                            }
+                        break;
+                        case 14:
+                            if(Minutos<30){
+                                colorB = 1;
+                                ProxCam = "14:30";
+                            }else{
+                                colorB = 0;
+                                ProxCam = "16:00";
+                            }
+                        break;
+                        case 15:
+                                colorB = 0;
+                                ProxCam = "16:00";
+                        break;
+                        case 16:
+                            if(Minutos<15){
+                                colorB = 0;
+                                ProxCam = "16:15";
+                            }else{
+                                colorB = 1;
+                                ProxCam = "17:15";
+                            }
+                        break;
+                        
+                        case 17:
+                            if(Minutos<15 && Minutos < 30){
+                                colorB = 1;
+                                ProxCam = "17:15";
+                            }else if (Minutos>15 && Minutos < 30){
+                                colorB = 0;
+                                ProxCam = "17:30";
+                            }else{
+                                colorB = 1;
+                                ProxCam = "18:30";
+                            }
+                        break;
+    
+                        default:
+                            colorB = 0;
+                            ProxCam = "8:30";
+                        break;
+                    }
+                    if(colorB == 0){
+                        document.body.style.backgroundColor = 'green';
+                    }else{
+                        document.body.style.backgroundColor = 'red';
+                    }
+    
+                    
+                    
+    
+                }
+    
+                function updateTextSize() {
+                    for (var i = 0; 3 > i; i++) {  // Iterate for better better convergence
+                        curFontSize *= targetWidth / (textElem.offsetWidth / textElem.parentNode.offsetWidth);
+                        curFontSize2 *= targetWidth2 / (textElem2.offsetWidth / textElem2.parentNode.offsetWidth);
+                        curFontSize3 *= targetWidth3 / (textElem3.offsetWidth / textElem3.parentNode.offsetWidth);
+                        curFontSize4 *= targetWidth4 / (textElem4.offsetWidth / textElem4.parentNode.offsetWidth);
+                        textElem3.style.fontSize = curFontSize3 + "px";
+                        textElem.style.fontSize = curFontSize + "px";
+                        textElem2.style.fontSize = curFontSize2 + "px";
+                        textElem4.style.fontSize = curFontSize4 + "px";
+                        
+                        
+                        if(datoBody.offsetHeight <= datoBody.offsetWidth){
+                            curFontSize = datoBody.offsetHeight/2 - (datoBody.offsetHeight/2)*0.10;
+                            curFontSize2 = curFontSize - (curFontSize*(1-targetWidth2));
+                            curFontSize3 = curFontSize - (curFontSize*(1-targetWidth3));
+                            curFontSize4 = curFontSize - (curFontSize*(1-targetWidth4));
+                            textElem3.style.fontSize = curFontSize3 + "px";
+                            textElem.style.fontSize = curFontSize + "px";
+                            textElem2.style.fontSize = curFontSize2 + "px";
+                            textElem4.style.fontSize = curFontSize4 + "px";
+                        }
+    
+                    }
+                }
+    
+                updateClock();
+                updateTextSize();
+                window.addEventListener("resize", updateTextSize);
+            </script>
+        </body>
+    </html>
+  
