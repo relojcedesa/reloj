@@ -143,12 +143,20 @@
                                 ProxCam = "14:30";
                             }else{
                                 colorB = 0;
-                                ProxCam = "15:30";
+                                ProxCam = "15:45";
+                            }
+                        case 15:
+                            if(Minutos<45){
+                                colorB = 0;
+                                ProxCam = "15:45";
+                            }else{
+                                colorB = 1;
+                                ProxCam = "17:30";
                             }
                         break;
                         default:
                             colorB = 0;
-                            ProxCam = "¡A descansar2!";
+                            ProxCam = "¡A descansar!";
                             ecoMode = true;
                         break;
                     }
