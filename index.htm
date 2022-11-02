@@ -54,6 +54,7 @@
               
                 var colorB = 0; //Color 0 = Verde; 1 = Rojo,
                 var ProxCam = "";
+                var ecoMode = false;
     
     
                 function updateClock() {
@@ -83,6 +84,7 @@
                         switch(Horas){
     
                         case 7:
+                            ecoMode = false
                             if(Minutos<30){
                                 colorB = 0;
                                 ProxCam = "7:30";
@@ -147,14 +149,18 @@
                         default:
                             colorB = 0;
                             ProxCam = "¡A descansar!";
+                            ecoMode = true
                         break;
                     }
                     
-                
-                    if(colorB == 0){
-                        document.body.style.backgroundColor = 'green';
-                    }else{
-                        document.body.style.backgroundColor = 'yellow';
+                    if(ecoMode == false)
+                    {
+                        if(colorB == 0){
+                            document.body.style.backgroundColor = 'green';
+                        }else{
+                            document.body.style.backgroundColor = 'red';
+                        }else{
+                       document.body.style.backgroundColor = 'black';
                     }
                 }
                 
