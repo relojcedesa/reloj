@@ -153,17 +153,16 @@
                         break;
                     }
                     
-                    if(ecoMode == false){
-                        if(colorB == 0){
+                    if(ecoMode == true){
+                           document.body.style.backgroundColor = 'black';
+                        else if(colorB == 0){
                             document.body.style.backgroundColor = 'green';
                         }
-                        if(colorB == 1){
+                        else if(colorB == 1){
                             document.body.style.backgroundColor = 'red';
                         }
-                    }else{
-                       document.body.style.backgroundColor = 'black';
                     }
-                }
+                    
                 
                 function Invierno(){
                     //Horario de invierno     
