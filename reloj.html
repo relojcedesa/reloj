@@ -146,7 +146,7 @@
                         break;
                         default:
                             colorB = 0;
-                            ProxCam = "7:00";
+                            ProxCam = "¡A descansar!";
                         break;
                     }
                     
@@ -159,102 +159,7 @@
                 }
                 
                 function Invierno(){
-                    //Horario de invierno
-                    switch(Horas){
-                        case 8:
-                            if(Minutos<30){
-                                colorB = 1;
-                                ProxCam = "8:30";
-                            }else{
-                                colorB = 0;
-                                ProxCam = "9:00";
-                            }
-                        break;
-                        case 9:
-                            colorB = 1;
-                            ProxCam = "10:00";
-                        break;
-                        case 10:
-                            if(Minutos<30){
-                                colorB = 0;
-                                ProxCam = "10:30";
-                            }else{
-                                colorB = 1;
-                                ProxCam = "11:30";
-                            }
-                        break;
-                        case 11:
-                            if(Minutos<30){
-                                colorB = 1;
-                                ProxCam = "11:30";
-                            }else{
-                                colorB = 0;
-                                ProxCam = "12:00";
-                            }
-                        break;
-                        case 12:
-                            colorB = 1;
-                            ProxCam = "13:00";
-                        break;
-                        case 13:
-                            if(Minutos<30){
-                                colorB = 0;
-                                ProxCam = "13:30";
-                            }else{
-                                colorB = 1;
-                                ProxCam = "14:30";
-                            }
-                        break;
-                        case 14:
-                            if(Minutos<30){
-                                colorB = 1;
-                                ProxCam = "14:30";
-                            }else{
-                                colorB = 0;
-                                ProxCam = "16:00";
-                            }
-                        break;
-                        case 15:
-                                colorB = 0;
-                                ProxCam = "16:00";
-                        break;
-                        case 16:
-                            if(Minutos<15){
-                                colorB = 0;
-                                ProxCam = "16:15";
-                            }else{
-                                colorB = 1;
-                                ProxCam = "17:15";
-                            }
-                        break;
-                        
-                        case 17:
-                            if(Minutos<15 && Minutos < 30){
-                                colorB = 1;
-                                ProxCam = "17:15";
-                            }else if (Minutos>15 && Minutos < 30){
-                                colorB = 0;
-                                ProxCam = "17:30";
-                            }else{
-                                colorB = 1;
-                                ProxCam = "18:30";
-                            }
-                        break;
-    
-                        default:
-                            colorB = 0;
-                            ProxCam = "8:30";
-                        break;
-                    }
-                    if(colorB == 0){
-                        document.body.style.backgroundColor = 'green';
-                    }else{
-                        document.body.style.backgroundColor = 'red';
-                    }
-    
-                    
-                    
-    
+                    //Horario de invierno     
                 }
     
                 function updateTextSize() {
